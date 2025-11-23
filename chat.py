@@ -1,9 +1,13 @@
 from frame_extraction import extract_frames
 from model import Qwen3VLAgent
+from video_downloader import clean_url, download_video
 
 agent = Qwen3VLAgent()
 
-video_path = "/kaggle/input/test-2-ego/ego_test3.mp4"
+# video_path = "/kaggle/input/test-2-ego/ego_test3.mp4"
+video_url = clean_url(input("Paste the video link: "))
+video_path = download_video(video_url)
+
 frames = extract_frames(video_path, num_frames=16)
 
 video_captions = []
