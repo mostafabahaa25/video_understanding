@@ -42,7 +42,7 @@ def run_video_summary(video_url: str, num_frames: int = 16) -> str:
                     "type": "text",
                     "text": (
                         "Below are descriptions of several video frames:\n\n"
-                        + " ".join(video_captions)
+                        + " ".join(captions)
                         + "\n\n"
                         "Your task: Produce a single, concise summary that captures the main idea. "
                         "Avoid repeating details,and avoid describing each description separately. "
