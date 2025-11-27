@@ -1,3 +1,4 @@
+import os
 from model import Qwen3VLAgent
 from frame_extraction import extract_frames
 from video_downloader import download_video, clean_url
@@ -5,9 +6,12 @@ from video_downloader import download_video, clean_url
 
 def run_video_summary(video_url: str, num_frames: int = 16) -> str:
     # 1 — Clean and download the video
-    video_url = clean_url(video_url)
-    video_path = download_video(video_url)
-
+    # Check if the input is a local file
+    if os.path.exists(video_url):
+        video_path = video_url  # use local file directly
+    else:
+        video_url = clean_url(video_url)
+        video_path = download_video(video_url)
     # 2 — Load the vision-language model
     agent = Qwen3VLAgent()
 
